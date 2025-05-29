@@ -1,5 +1,5 @@
 {
-  "name": "PLANKA",
+  "name": "InsideDB",
   "icons": [
     {
       "src": "favicon.ico",
@@ -19,6 +19,6 @@
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#22252a",
+  "theme_color": "#ffffff",
   "background_color": "#ffffff"
 }
