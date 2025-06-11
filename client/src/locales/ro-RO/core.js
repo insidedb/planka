@@ -1,9 +1,12 @@
 import dateFns from 'date-fns/locale/ro';
 import timeAgo from 'javascript-time-ago/locale/ro';
 
+import markdownEditor from './markdown-editor.json';
+
 export default {
   dateFns,
   timeAgo,
+  markdownEditor,
 
   format: {
     date: 'P',
@@ -61,7 +64,6 @@ export default {
       currentPassword: 'Parola Curentă',
       dangerZone_title: 'Zona periculoasă',
       date: 'Data',
-      dueDate_title: 'Data scadentă',
       deleteAttachment_title: 'Ștergeți atașamentul',
       deleteBoard_title: 'Ștergeți Tabla',
       deleteCard_title: 'Ștergeți cardul',
@@ -74,7 +76,7 @@ export default {
       description: 'Descriere',
       detectAutomatically: 'Detectează automat',
       dropFileToUpload: 'Aruncă fișierul pentru a încărca',
-      editor: 'Editor',
+      dueDate_title: 'Data scadentă',
       editAttachment_title: 'Editați atașamentul',
       editAvatar_title: 'Editați avatarul',
       editDueDate_title: 'Editați data scadentă',
@@ -85,6 +87,7 @@ export default {
       editPermissions_title: 'Editați permisiunile',
       editStopwatch_title: 'Editați cronometrul',
       editUsername_title: 'Editați numele de utilizator',
+      editor: 'Editor',
       email: 'E-mail',
       enterCardTitle: 'Introduceți titlul cardului...',
       enterDescription: 'Introduceți descrierea...',
@@ -113,12 +116,12 @@ export default {
       newEmail: 'Email nou',
       newPassword: 'Parolă Nouă',
       newUsername: 'Nume de utilizator nou',
-      noConnectionToServer: 'Nicio conexiune la server',
       noBoards: 'Fără Table',
+      noConnectionToServer: 'Nicio conexiune la server',
       noLists: 'Fără Liste',
       noProjects: 'Fără proiecte',
-      notifications: 'Notificări',
       noUnreadNotifications: 'Fără notificări necitite.',
+      notifications: 'Notificări',
       openBoard_title: 'Tablă deschisă',
       optional_inline: 'optional',
       organization: 'Organizatia',
@@ -194,8 +197,8 @@ export default {
       deleteTask_title: 'Ștergeți Sarcina',
       deleteUser: 'Ștergeți utilizatorul',
       edit: 'Editați',
-      editDueDate_title: 'Editați data scadentă',
       editDescription_title: 'Editați descrierea',
+      editDueDate_title: 'Editați data scadentă',
       editEmail_title: 'Editați e-mailul',
       editInformation_title: 'Editați informații',
       editPassword_title: 'Editați parola',

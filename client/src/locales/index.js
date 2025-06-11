@@ -8,10 +8,12 @@ import bgBG from './bg-BG';
 import csCZ from './cs-CZ';
 import daDK from './da-DK';
 import deDE from './de-DE';
+import elGR from './el-GR';
 import enGB from './en-GB';
 import enUS from './en-US';
 import esES from './es-ES';
 import faIR from './fa-IR';
+import fiFI from './fi-FI';
 import frFR from './fr-FR';
 import huHU from './hu-HU';
 import idID from './id-ID';
@@ -24,8 +26,8 @@ import ptBR from './pt-BR';
 import roRO from './ro-RO';
 import ruRU from './ru-RU';
 import skSK from './sk-SK';
-import srCyrlCS from './sr-Cyrl-CS';
-import srLatnCS from './sr-Latn-CS';
+import srCyrlRS from './sr-Cyrl-RS';
+import srLatnRS from './sr-Latn-RS';
 import svSE from './sv-SE';
 import trTR from './tr-TR';
 import ukUA from './uk-UA';
@@ -39,10 +41,12 @@ const locales = [
   csCZ,
   daDK,
   deDE,
+  elGR,
   enGB,
   enUS,
   esES,
   faIR,
+  fiFI,
   frFR,
   huHU,
   idID,
@@ -55,8 +59,8 @@ const locales = [
   roRO,
   ruRU,
   skSK,
-  srCyrlCS,
-  srLatnCS,
+  srCyrlRS,
+  srLatnRS,
   svSE,
   trTR,
   ukUA,

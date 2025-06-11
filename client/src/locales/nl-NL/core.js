@@ -1,9 +1,12 @@
 import dateFns from 'date-fns/locale/nl';
 import timeAgo from 'javascript-time-ago/locale/nl';
 
+import markdownEditor from './markdown-editor.json';
+
 export default {
   dateFns,
   timeAgo,
+  markdownEditor,
 
   format: {
     date: 'd-M-yyyy',
@@ -61,7 +64,6 @@ export default {
       currentPassword: 'Huidig wachtwoord',
       dangerZone_title: 'Gevaarlijke zone',
       date: 'Datum',
-      dueDate_title: 'Vervaldatum',
       deleteAttachment_title: 'Bijlage verwijderen',
       deleteBoard_title: 'Bord verwijderen',
       deleteCard_title: 'Kaart verwijderen',
@@ -74,7 +76,7 @@ export default {
       description: 'Beschrijving',
       detectAutomatically: 'Automatisch detecteren',
       dropFileToUpload: 'Sleep bestand om te uploaden',
-      editor: 'Editor',
+      dueDate_title: 'Vervaldatum',
       editAttachment_title: 'Bijlage bewerken',
       editAvatar_title: 'Avatar bewerken',
       editDueDate_title: 'Vervaldatum bewerken',
@@ -85,6 +87,7 @@ export default {
       editPermissions_title: 'Machtigingen bewerken',
       editStopwatch_title: 'Stopwatch bewerken',
       editUsername_title: 'Gebruikersnaam bewerken',
+      editor: 'Editor',
       email: 'E-mail',
       enterCardTitle: 'Voer kaarttitel in...',
       enterDescription: 'Beschrijving invoeren...',
@@ -113,12 +116,12 @@ export default {
       newEmail: 'Nieuwe e-mail',
       newPassword: 'Nieuw wachtwoord',
       newUsername: 'Nieuwe gebruikersnaam',
-      noConnectionToServer: 'Geen verbinding met server',
       noBoards: 'Geen borden',
+      noConnectionToServer: 'Geen verbinding met server',
       noLists: 'Geen lijsten',
       noProjects: 'Geen projecten',
-      notifications: 'Meldingen',
       noUnreadNotifications: 'Geen ongelezen meldingen.',
+      notifications: 'Meldingen',
       openBoard_title: 'Bord openen',
       optional_inline: 'optioneel',
       organization: 'Organisatie',
@@ -194,8 +197,8 @@ export default {
       deleteTask_title: 'Taak verwijderen',
       deleteUser: 'Gebruiker verwijderen',
       edit: 'Bewerken',
-      editDueDate_title: 'Vervaldatum bewerken',
       editDescription_title: 'Beschrijving bewerken',
+      editDueDate_title: 'Vervaldatum bewerken',
       editEmail_title: 'E-mail bewerken',
       editInformation_title: 'Informatie bewerken',
       editPassword_title: 'Wachtwoord bewerken',

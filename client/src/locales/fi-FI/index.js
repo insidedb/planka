@@ -1,8 +1,8 @@
 import login from './login';
 
 export default {
-  language: 'sr-Latn-CS',
-  country: 'rs',
-  name: 'Srpski (latinica)',
+  language: 'fi-FI',
+  country: 'fi',
+  name: 'Suomi',
   embeddedLocale: login,
 };

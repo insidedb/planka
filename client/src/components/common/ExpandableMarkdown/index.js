@@ -3,8 +3,6 @@
  * Licensed under the Fair Use License: https://github.com/plankanban/planka/blob/master/LICENSE.md
  */
 
-:global(#app) {
-  .submitButton {
-    margin-top: 12px;
-  }
-}
+import ExpandableMarkdown from './ExpandableMarkdown';
+
+export default ExpandableMarkdown;

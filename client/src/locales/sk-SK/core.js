@@ -1,9 +1,12 @@
 import dateFns from 'date-fns/locale/sk';
 import timeAgo from 'javascript-time-ago/locale/sk';
 
+import markdownEditor from './markdown-editor.json';
+
 export default {
   dateFns,
   timeAgo,
+  markdownEditor,
 
   format: {
     date: 'd.M.yyyy',
@@ -58,7 +61,6 @@ export default {
       currentPassword: 'Aktuálne heslo',
       dangerZone_title: 'Nebezpečná zóna',
       date: 'Dátum',
-      dueDate_title: 'Termín do',
       deleteAttachment_title: 'Zmazať prílohu',
       deleteBoard_title: 'Zmazať tabuľu',
       deleteCard_title: 'Zmazať kartu',
@@ -70,6 +72,7 @@ export default {
       deleteUser_title: 'Zmazať používateľa',
       description: 'Popis',
       dropFileToUpload: 'Potiahnutím nahraj súbor',
+      dueDate_title: 'Termín do',
       editAttachment_title: 'Upraviť prílohu',
       editAvatar_title: 'Upraviť avatar',
       editDueDate_title: 'Upraviť Termín do',
@@ -104,12 +107,12 @@ export default {
       newEmail: 'Nový e-mail',
       newPassword: 'Nové heslo',
       newUsername: 'Nové používateľské meno',
-      noConnectionToServer: 'Nie je spojenie k serveru',
       noBoards: 'Žiadne tabule',
+      noConnectionToServer: 'Nie je spojenie k serveru',
       noLists: 'Žiadne zoznamy',
       noProjects: 'Žiadne projekty',
-      notifications: 'Oznámenia',
       noUnreadNotifications: 'Žiadne neprečítané oznámenia.',
+      notifications: 'Oznámenia',
       openBoard_title: 'Otvoriť tabuľu',
       optional_inline: 'voliteľné',
       organization: 'Spoločnosť',
@@ -177,8 +180,8 @@ export default {
       deleteTask_title: 'Zmazať úlohu',
       deleteUser: 'Zmazať používateľa',
       edit: 'Upraviť',
-      editDueDate_title: 'Upraviť termín do',
       editDescription_title: 'Upraviť popis',
+      editDueDate_title: 'Upraviť termín do',
       editEmail_title: 'Upraviť e-mail',
       editInformation_title: 'Upraviť informácie',
       editPassword_title: 'Upraviť heslo',
