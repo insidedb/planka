@@ -3,6 +3,10 @@
  * Licensed under the Fair Use License: https://github.com/plankanban/planka/blob/master/LICENSE.md
  */
 
+const { makeWhereQueryBuilder } = require('../helpers');
+
+const buildWhereQuery = makeWhereQueryBuilder(List);
+
 const defaultFind = (criteria, { sort = 'id' } = {}) => List.find(criteria).sort(sort);
 
 /* Query methods */
@@ -48,31 +52,54 @@ const getOneTrashByBoardId = (boardId) =>
   });
 
 const updateOne = async (criteria, values) => {
-  if (values.type) {
+  if (values.boardId || values.type) {
     return sails.getDatastore().transaction(async (db) => {
+      const [whereQuery, whereQueryValues] = buildWhereQuery(criteria);
+
+      const queryResult = await sails
+        .sendNativeQuery(
+          `SELECT board_id, type FROM list WHERE ${whereQuery} LIMIT 1 FOR UPDATE`,
+          whereQueryValues,
+        )
+        .usingConnection(db);
+
+      if (queryResult.rowCount === 0) {
+        return { list: null };
+      }
+
+      const prev = {
+        boardId: queryResult.rows[0].board_id,
+        type: queryResult.rows[0].type,
+      };
+
       const list = await List.updateOne(criteria)
         .set({ ...values })
         .usingConnection(db);
 
-      let cards = [];
       let tasks = [];
-
       if (list) {
-        const prevTypeState = List.TYPE_STATE_BY_TYPE[prevList.type];
-        const typeState = List.TYPE_STATE_BY_TYPE[list.type];
-
-        let isClosed;
-        if (prevTypeState === List.TypeStates.CLOSED && typeState === List.TypeStates.OPENED) {
-          isClosed = false;
-        } else if (
-          prevTypeState === List.TypeStates.OPENED &&
-          typeState === List.TypeStates.CLOSED
-        ) {
-          isClosed = true;
+        if (list.boardId !== prev.boardId) {
+          await Card.update({
+            listId: list.id,
+          })
+            .set({
+              boardId: list.boardId,
+            })
+            .usingConnection(db);
         }
 
+        const prevTypeState = List.TYPE_STATE_BY_TYPE[prev.type];
+        const typeState = List.TYPE_STATE_BY_TYPE[list.type];
+
+        const transitions = {
+          [`${List.TypeStates.CLOSED}->${List.TypeStates.OPENED}`]: false,
+          [`${List.TypeStates.OPENED}->${List.TypeStates.CLOSED}`]: true,
+        };
+
+        const isClosed = transitions[`${prevTypeState}->${typeState}`];
+
         if (!_.isUndefined(isClosed)) {
-          cards = await Card.update({
+          const cards = await Card.update({
             listId: list.id,
           })
             .set({
@@ -94,19 +121,12 @@ const updateOne = async (criteria, values) => {
         }
       }
 
-      return {
-        list,
-        cards,
-        tasks,
-      };
+      return { list, tasks };
     });
   }
 
   const list = await List.updateOne(criteria).set({ ...values });
-
-  return {
-    list,
-  };
+  return { list };
 };
 
 // eslint-disable-next-line no-underscore-dangle

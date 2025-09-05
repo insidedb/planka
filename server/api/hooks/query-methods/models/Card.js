@@ -3,9 +3,9 @@
  * Licensed under the Fair Use License: https://github.com/plankanban/planka/blob/master/LICENSE.md
  */
 
-const LIMIT = 50;
+const buildSearchParts = require('../../../../utils/build-query-parts');
 
-const SEARCH_PARTS_REGEX = /[ ,;]+/;
+const LIMIT = 50;
 
 const defaultFind = (criteria, { sort = 'id', limit } = {}) =>
   Card.find(criteria).sort(sort).limit(limit);
@@ -53,13 +53,7 @@ const getIdsByEndlessListId = async (
       queryValues.push(search.substring(1));
       query += ` AND (card.name ~* $${queryValues.length} OR card.description ~* $${queryValues.length})`;
     } else {
-      const searchParts = search.split(SEARCH_PARTS_REGEX).flatMap((searchPart) => {
-        if (!searchPart) {
-          return [];
-        }
-
-        return searchPart.toLowerCase();
-      });
+      const searchParts = buildSearchParts(search);
 
       if (searchParts.length > 0) {
         let ilikeValues = searchParts.map((searchPart) => {
@@ -206,29 +200,23 @@ const update = async (criteria, values) => {
       const cards = await Card.update(criteria).set(values).fetch().usingConnection(db);
 
       let tasks = [];
-      if (card) {
+      if (!_.isUndefined(values.isClosed)) {
         tasks = await Task.update({
           linkedCardId: sails.helpers.utils.mapRecords(cards),
         })
           .set({
-            isCompleted: card.isClosed,
+            isCompleted: values.isClosed,
           })
           .fetch()
           .usingConnection(db);
       }
 
-      return {
-        cards,
-        tasks,
-      };
+      return { cards, tasks };
     });
   }
 
   const cards = await Card.update(criteria).set(values).fetch();
-
-  return {
-    cards,
-  };
+  return { cards };
 };
 
 const updateOne = async (criteria, values) => {
@@ -238,8 +226,8 @@ const updateOne = async (criteria, values) => {
         .set({ ...values })
         .usingConnection(db);
 
-      let tasks = [];
-      if (card) {
+      let tasks;
+      if (!_.isUndefined(values.isClosed) && card) {
         tasks = await Task.update({
           linkedCardId: card.id,
         })
@@ -250,18 +238,12 @@ const updateOne = async (criteria, values) => {
           .usingConnection(db);
       }
 
-      return {
-        card,
-        tasks,
-      };
+      return { card, tasks };
     });
   }
 
   const card = await Card.updateOne(criteria).set({ ...values });
-
-  return {
-    card,
-  };
+  return { card };
 };
 
 // eslint-disable-next-line no-underscore-dangle

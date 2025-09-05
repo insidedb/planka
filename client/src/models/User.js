@@ -3,7 +3,7 @@
  * Licensed under the Fair Use License: https://github.com/plankanban/planka/blob/master/LICENSE.md
  */
 
-import { orderBy } from 'lodash';
+import orderBy from 'lodash/orderBy';
 import { attr } from 'redux-orm';
 
 import BaseModel from './BaseModel';
@@ -93,6 +93,7 @@ export default class extends BaseModel {
       case ActionTypes.LOCATION_CHANGE_HANDLE:
       case ActionTypes.PROJECT_UPDATE_HANDLE:
       case ActionTypes.BOARD_MEMBERSHIP_CREATE_HANDLE:
+      case ActionTypes.LIST_UPDATE_HANDLE:
       case ActionTypes.CARD_UPDATE_HANDLE:
         if (payload.users) {
           payload.users.forEach((user) => {
